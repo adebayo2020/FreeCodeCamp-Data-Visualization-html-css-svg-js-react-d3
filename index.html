@@ -2,22 +2,70 @@
 <html>
   <head>
     <title>Smiley Face Hello HTML</title>
-    <script src="https://unpkg.com/react@17.0.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script> -->
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17.0.1/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.production.min.js"
+    ></script>
   </head>
 
   <body>
-    <svg width="960" height="500">
-      <circle
-        cx="480"
-        cy="250"
-        r="245"
-        fill="yellow"
-        stroke="black"
-        stroke-width="10"
-      ></circle>
+    <script src="bundle.js"></script>
+    <div id="root"></div>
 
-      <circle cx="350" cy="180" r="50"></circle>
-      <circle cx="600" cy="180" r="50"></circle>
-    </svg>
+    <script type="text/babel">
+      const width = 960;
+      const height = 500;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const strokeWidth = 20;
+      const eyeOffsetX = 90;
+      const eyeOffsetY = 100;
+      const eyeRadius = 50;
+
+      class App extends React.Component {
+        render() {
+          return (
+            <svg width={width} height={height}>
+              <circle
+                cx={centerX}
+                cy={centerY}
+                r={centerY - strokeWidth / 2}
+                fill="yellow"
+                stroke="black"
+                stroke-width={strokeWidth}
+              />
+              <circle
+                cx={centerX - eyeOffsetX}
+                cy={centerY - eyeOffsetY}
+                r={eyeRadius}
+              />
+
+              <circle
+                cx={centerX + eyeOffsetX}
+                cy={centerY - eyeOffsetY}
+                r={eyeRadius}
+              />
+            </svg>
+          );
+        }
+      }
+
+      const rootElement = document.getElementById("root");
+      ReactDOM.render(<App />, rootElement);
+    </script>
   </body>
 </html>
